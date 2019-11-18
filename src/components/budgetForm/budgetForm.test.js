@@ -4,46 +4,7 @@ import BudgetForm from './BudgetForm'
 import uuid from 'uuid/v4'
 
 jest.mock('uuid/v4')
-//budget: [{id:123,name:'November',Expenses:[],Income:[]}]
-/*
-[{
-	id:123,
-	name:'May'
-	expenses:[
-	{ id: 1,
-	  description:Cable,
-	  amount:$50.00
-	},
-	{ id: 2,
-	  description:Insurance,
-	  amount:$150.00
-	}
-
-	],
-	income:[
-	{ id: 2,
-	  description:Paycheck,
-	  amount:$1500.00
-	}
-	]
-	
-}, {
-	id:1234,
-	name:'June'
-	expenses:[],
-	income:[]
-	
-}]
-budget: [{
-				id: 1,
-				name:'November',
-				expenses: [],
-				income:[]
-			}]
-
-*/
-
-describe('BudgetForm Component', () => {
+ibe('BudgetForm Component', () => {
 	beforeEach(() => {    
 	  //jest.resetAllMocks()
 	});
