@@ -1,12 +1,12 @@
 import React from 'react';
 import Navbar from '../navbar/Navbar'
-import BudgetForm from '../budgetForm/BudgetForm'
+import BudgetItems from '../budgetItems/BudgetItems'
 
 function App() {
   return (
     <div className="App">
-     <Navbar/>
-     <BudgetForm/>
+     	<Navbar/>
+  		<BudgetItems/>
     </div>
   );
 }

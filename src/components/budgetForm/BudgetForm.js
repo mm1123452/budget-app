@@ -14,18 +14,20 @@ class BudgetForm extends Component {
 	}
 
 	handleChange(e) {
-			//e.preventDefault()
-		//console.log(event.target.name)
-		this.setState({description: e.target.value})
+		e.preventDefault()
+		this.setState({[e.target.name]:e.target.value})
 
 	}
 
 	handleSubmit(e) {
 		e.preventDefault()
-		console.log('clicked')
+		console.log('clicked', this.state)
+		const amount = parseInt(this.state.amount)
+		this.props.add({...this.state, amount,id: uuid()})
 	}
 
 	render() {
+		const {description, amount, type} = this.state
 		return (
 			<form className="form-inline mt-3">
 				<div className="form-group">
@@ -35,7 +37,8 @@ class BudgetForm extends Component {
 						id="description" 
 						name="description"
 						className="form-control mx-sm-3"
-						onChange={this.handleChange}/>			
+						onChange={this.handleChange}
+						value={description}/>			
 				</div>
 				<div className="form-group">
 					<label htmlFor="amount">Amount</label>
@@ -44,10 +47,12 @@ class BudgetForm extends Component {
 						id="amount" 
 						name="amount"
 						className="form-control mx-sm-3"
-						onChange={this.handleChange} />		
+						onChange={this.handleChange}
+						value={amount} />		
 				</div>
 				<div className="form-group">
-				    <select name="type" className="custom-select" required>
+				    <select name="type" className="custom-select" 
+				    value={type} onChange={this.handleChange} required>
 				      <option value="">Select One</option>
 				      <option value="expense">Expense</option>
 				      <option value="income">Income</option>		   

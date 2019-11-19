@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {shallow} from 'enzyme';
 import App from './App';
 import Navbar from '../navbar/Navbar'
-import BudgetForm from '../budgetForm/BudgetForm'
+import BudgetItems from '../budgetItems/BudgetItems'
 
 
 describe('App component', () => {
@@ -21,10 +21,10 @@ describe('App component', () => {
 		expect(wrapper.find(Navbar)).toHaveLength(1)
 	})
 
-	it ('renders a BudgetForm component', () => {
+	it ('renders a BudgetItems component', () => {
 		const wrapper = shallow(<App/>)
 
-		expect(wrapper.find(BudgetForm)).toHaveLength(1)
+		expect(wrapper.find(BudgetItems)).toHaveLength(1)
 	})
 
 
