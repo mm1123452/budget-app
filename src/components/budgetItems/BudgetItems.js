@@ -1,6 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import BudgetForm from '../budgetForm/BudgetForm'
 import Table from '../table/Table'
+import Chart from '../chart/Chart'
 
 class BudgetItems extends Component {
 	constructor(props) {
@@ -25,9 +26,14 @@ class BudgetItems extends Component {
 		const {income, expenses} = this.state
 		const TABLE_TITLE_1 = 'Expenses'
 		const TABLE_TITLE_2 = 'Income'
+
 		 return (		
 		 	<Fragment>   
 		     	<BudgetForm add={this.addItem}/>	
+		     	{income.length > 0 && expenses.length > 0 ? 
+		     		<Chart expenses={expenses} income={income}/> :
+		     		null
+		     	}
 		     	<div className="container">
 		     		<div className="mt-3 d-flex justify-content-start">
 		     			{expenses.length > 0 ?
@@ -36,7 +42,7 @@ class BudgetItems extends Component {
 		     				<Table title={TABLE_TITLE_2} data={income}/> : null}
 		     		</div>
 		     	</div>
-		     </Fragment>	   
+		    </Fragment>	   
 		  );
 	}
  

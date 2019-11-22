@@ -3,6 +3,7 @@ import {shallow,mount} from 'enzyme';
 import BudgetForm from '../budgetForm/BudgetForm'
 import BudgetItems from '../budgetItems/BudgetItems'
 import Table from '../table/Table'
+import Chart from '../chart/Chart'
 import uuid from 'uuid/v4'
 
 jest.mock('uuid/v4')
@@ -53,6 +54,16 @@ describe('budgetItems component', () => {
 		const income = wrapper.find(Table).at(1).prop('data')
 		expect(wrapper.state('expenses')).toEqual(expenses)
 		expect(wrapper.state('income')).toEqual(income)
+	})
+
+	it('renders a Chart component if expenses & income exist', () => {
+		wrapper.setState({expenses:[{}, {}],income:[{}]})
+		expect(wrapper.find(Chart)).toHaveLength(1)
+	})
+
+	it('does not render a Chart component if only income or only expenses exist', () => {
+		wrapper.setState({income:[{}]})
+		expect(wrapper.find(Chart)).toHaveLength(0)
 	})
 
 })
