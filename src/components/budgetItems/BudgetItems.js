@@ -29,7 +29,9 @@ class BudgetItems extends Component {
 
 		 return (		
 		 	<Fragment>   
-		     	<BudgetForm add={this.addItem}/>	
+		 		<div className="container">
+		     		<BudgetForm add={this.addItem}/>	
+		     	</div>
 		     	{income.length > 0 && expenses.length > 0 ? 
 		     		<Chart expenses={expenses} income={income}/> :
 		     		null
