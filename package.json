@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.3",
+    "config": "^3.2.4",
     "express": "^4.17.1",
     "mongoose": "^5.7.12",
     "react": "^16.12.0",

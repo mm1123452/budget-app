@@ -1,20 +1,18 @@
 const express = require('express')
-
 const app = express();
-
-const db = require('./db')
-
+const connectDB = require('./db')
 const PORT = process.env.PORT || 5000;
 
-//db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+connectDB()
 
-
-app.use('/api/users', require('./routes/users'))
-app.use('/api/auth', require('./routes/auth'))
-app.use('/api/budget', require('./routes/budget'))
+app.use(express.json({extended: false}))
 
 app.get('/', (req,res) => {
 	res.json({msg:'Hello World'})
 })
+
+app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/budget', require('./routes/budget'))
 
 app.listen(PORT, () => console.log(`app started on port ${PORT}`))
