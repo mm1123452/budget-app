@@ -5,7 +5,7 @@ const router = express.Router();
 // @desc    Get all user's budget
 // @access  Private
 router.get('/', (req,res) => {
-	res.send('Get all contacts')
+	res.send('Get every budget')
 });
 
 // @route   POST api/budget
