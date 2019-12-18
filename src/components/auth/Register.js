@@ -62,7 +62,8 @@ const Register = () => {
 							type="password" 
 							name="password" 
 							value={password}
-							onChange={onChange}/>
+							onChange={onChange}
+							minLength="6"/>
 					</div>
 
 					<div className="form-group">
@@ -72,7 +73,8 @@ const Register = () => {
 							type="password" 
 							name="password2" 
 							value={password2}
-							onChange={onChange}/>
+							onChange={onChange}
+							minLength="6"/>
 					</div>
 					<input type="submit" value="Register" className="btn btn-primary btn-block"/>
 				</form>
