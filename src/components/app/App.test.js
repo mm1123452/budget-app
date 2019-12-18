@@ -21,11 +21,7 @@ describe('App component', () => {
 		expect(wrapper.find(Navbar)).toHaveLength(1)
 	})
 
-	it ('renders a BudgetItems component', () => {
-		const wrapper = shallow(<App/>)
 
-		expect(wrapper.find(BudgetItems)).toHaveLength(1)
-	})
 
 
 })
