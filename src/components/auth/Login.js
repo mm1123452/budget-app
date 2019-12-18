@@ -1,22 +1,31 @@
 import React, {useState} from 'react'
+import ErrorComponent from '../error/Error.js'
 
 const Login = () => {
 	const [user,setUser]  = useState({
 		email: '',
 		password:'',
 	})
-
+	const [error, setError] = useState(false)
+	const [errorMessage, setErrorMessage] = useState('')
 	const { email, password} = user
 
 	const onChange = e => setUser({...user, [e.target.name]: e.target.value })
 
 	const onSubmit = e => {
 		e.preventDefault();
-		console.log('Login user')
+		if (email === '' || password === '' ) {
+			setErrorMessage('Please fill out all fields')
+			setError(true)
+		}  else {
+			setError(false)
+			console.log('Login user')
+		}
 	}
 	return (
 		<div className="container">
 			<div className="col-sm-8 offset-sm-2">
+				{error && <ErrorComponent message={errorMessage}/>}
 				<h1 className="mt-4">Login</h1>
 				<form onSubmit={onSubmit}>
 					<div className="form-group">

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import ErrorComponent from '../error/Error.js'
 
 const Register = () => {
 	const [user,setUser]  = useState({
@@ -7,6 +8,8 @@ const Register = () => {
 		password:'',
 		password2:''
 	})
+	const [error, setError] = useState(false)
+	const [errorMessage, setErrorMessage] = useState('')
 
 	const {name, email, password, password2} = user
 
@@ -14,11 +17,22 @@ const Register = () => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		console.log('Register submit')
+		if (name === '' || email === '' || password === '' || password2 === '' ) {
+			setErrorMessage('Please fill out all fields')
+			setError(true)
+		} else if (password !== password2) {
+			setErrorMessage('Password must match')
+			setError(true)
+		} else {
+			setError(false)
+			console.log('Register submit')
+		}		
 	}
+
 	return (
 		<div className="container">
 			<div className="col-sm-8 offset-sm-2">
+				{error && <ErrorComponent message={errorMessage}/>}
 				<h1 className="mt-4">Register</h1>
 				<form onSubmit={onSubmit}>
 					<div className="form-group">
