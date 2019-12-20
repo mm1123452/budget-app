@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import ErrorComponent from '../error/Error.js'
+import {register} from '../../api/api'
 
 const Register = () => {
 	const [user,setUser]  = useState({
@@ -25,6 +26,8 @@ const Register = () => {
 			setError(true)
 		} else {
 			setError(false)
+			const data = {name,email,password}
+			register(data)
 			console.log('Register submit')
 		}		
 	}
