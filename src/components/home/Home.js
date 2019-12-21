@@ -8,9 +8,14 @@ const Home = () => {
 
 	const {budget} = budgetContext;
 
+	const {isAuthenticated} = authContext;
+
 	useEffect(() => {
-		authContext.loadUser(localStorage.getItem('token'))
-	}, [])
+		if (isAuthenticated) {
+			authContext.loadUser(localStorage.getItem('token'))
+		}
+		
+	}, [isAuthenticated])
 
 	const budgetList = budget.length > 0 ? budget.map(budget => (
 			<li key={budget.id} className="list-group-item">{budget.name}</li>

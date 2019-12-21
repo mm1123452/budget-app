@@ -84,6 +84,9 @@ const AuthState = props => {
 		try {
 			const response = await createRequest('api/auth','GET',null,token)
 			const data = await response.json()
+				if (!response.ok) {
+				    throw new Error(data.msg);
+			 	}
 			console.log(response)
 			console.log(data)
 
