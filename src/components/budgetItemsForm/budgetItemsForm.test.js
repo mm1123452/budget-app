@@ -1,10 +1,10 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import BudgetForm from './BudgetForm'
+import BudgetItemsForm from './BudgetItemsForm'
 import uuid from 'uuid/v4'
 
 jest.mock('uuid/v4')
-describe('BudgetForm Component', () => {
+describe('BudgetItemsForm Component', () => {
 	let wrapper;
 	let handleChange;
 	let wrapperWithProps;
@@ -14,8 +14,8 @@ describe('BudgetForm Component', () => {
 	let mockFn = jest.fn()
 
 	beforeEach(() => {    
-	   handleChange = jest.spyOn(BudgetForm.prototype,'handleChange')
-	   wrapper = shallow(<BudgetForm add={mockFn}/>)
+	   handleChange = jest.spyOn(BudgetItemsForm.prototype,'handleChange')
+	   wrapper = shallow(<BudgetItemsForm add={mockFn}/>)
 	   //wrapperWithProps = shallow(<BudgetForm add={() => {}}/>)
 	})
 
@@ -93,8 +93,8 @@ describe('BudgetForm Component', () => {
 	})
 
 	it('calls HandleSubmit method when the submit button is clicked', () => {
-		const handleSubmit = jest.spyOn(BudgetForm.prototype,'handleSubmit');
-		const wrapper = shallow(<BudgetForm add={jest.fn()} />)
+		const handleSubmit = jest.spyOn(BudgetItemsForm.prototype,'handleSubmit');
+		const wrapper = shallow(<BudgetItemsForm add={jest.fn()} />)
 		wrapper.find('button').simulate('click', { preventDefault() {} })
 
 		expect(handleSubmit).toHaveBeenCalled()

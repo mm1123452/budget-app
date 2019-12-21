@@ -1,5 +1,5 @@
 import React,{Component, Fragment} from 'react';
-import BudgetForm from '../budgetForm/BudgetForm'
+import BudgetItemsForm from '../budgetItemsForm/BudgetItemsForm'
 import Table from '../table/Table'
 import Chart from '../chart/Chart'
 
@@ -30,7 +30,7 @@ class BudgetItems extends Component {
 		 return (		
 		 	<Fragment>   
 		 		<div className="container">
-		     		<BudgetForm add={this.addItem}/>	
+		     		<BudgetItemsForm add={this.addItem}/>	
 		     	</div>
 		     	{income.length > 0 && expenses.length > 0 ? 
 		     		<Chart expenses={expenses} income={income}/> :

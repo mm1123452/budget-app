@@ -1,66 +1,52 @@
-import React, {Component} from 'react'
-import uuid from 'uuid/v4'
+import React, {useState, useContext, useEffect} from 'react'
 
-class BudgetForm extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			description:'',
-			amount:0,
-			type:''
+import BudgetContext from '../../context/budget/budgetContext'
+
+const BudgetForm = (props) => {
+	const budgetContext = useContext(BudgetContext)
+	const [name,setName]  = useState({
+		name: '',
+	})
+	
+	const {login, isAuthenticated} = authContext
+
+	useEffect(() => {
+		if(isAuthenticated) {
+			props.history.push('/')
 		}
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
-	}
+	},[isAuthenticated, props.history])
 
-	handleChange(e) {
-		e.preventDefault()
-		this.setState({[e.target.name]:e.target.value})
+	const onChange = e => setUser({...user, [e.target.name]: e.target.value })
 
+	const onSubmit = e => {
+		e.preventDefault();
+		if (email === '' || password === '' ) {
+			setErrorMessage('Please fill out all fields')
+			setError(true)
+		}  else {
+			setError(false)
+			login({email,password})
+			console.log('Login user')
+		}
 	}
-
-	handleSubmit(e) {
-		e.preventDefault()
-		console.log('clicked', this.state)
-		const amount = parseInt(this.state.amount)
-		this.props.add({...this.state, amount,id: uuid()})
-	}
-
-	render() {
-		const {description, amount, type} = this.state
-		return (
-			<form className="form-inline mt-3">
-				<div className="form-group">
-					<label htmlFor="description">Description</label>
-					<input 
-						type="text" 
-						id="description" 
-						name="description"
-						className="form-control mx-sm-3"
-						onChange={this.handleChange}
-						value={description}/>			
-				</div>
-				<div className="form-group">
-					<label htmlFor="amount">Amount</label>
-					<input 
-						type="text" 
-						id="amount" 
-						name="amount"
-						className="form-control mx-sm-3"
-						onChange={this.handleChange}
-						value={amount} />		
-				</div>
-				<div className="form-group">
-				    <select name="type" className="custom-select" 
-				    value={type} onChange={this.handleChange} required>
-				      <option value="">Select One</option>
-				      <option value="expense">Expense</option>
-				      <option value="income">Income</option>		   
-				    </select>		    
-				 </div>
-				 <button onClick = {this.handleSubmit} className="btn btn-primary ml-2" type="submit">Add</button>
-			</form>
-		)
-	}
+	return (
+		<div className="container">
+			<div className="col-sm-8 offset-sm-2">
+				<h1 className="mt-4">Login</h1>
+				<form onSubmit={onSubmit}>
+					<div className="form-group">
+						<label htmlFor="name">Name</label>
+						<input 
+							className="form-control"
+							type="name" 
+							name="name" 
+							value={name}
+							onChange={onChange}/>
+					</div>
+					<input type="submit" value="Login" className="btn btn-primary btn-block"/>
+				</form>
+			</div>
+		</div>
+	)
 }
 export default BudgetForm;
