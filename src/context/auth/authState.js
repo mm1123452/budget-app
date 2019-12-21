@@ -18,6 +18,7 @@ const AuthState = props => {
 
 	//TODO refactor
 	const createRequest  = (url,method, data, token) => {
+		console.log(token)
 		let customHeader = new Headers({'Content-Type': 'application/json'})
 
 		if (token) {
@@ -98,7 +99,7 @@ const AuthState = props => {
 		}
 	}
 
-	const logout = async (token) => {dispatch({type: LOGOUT})}
+	const logout = async () => {dispatch({type: LOGOUT})}
 
 	return (
 		<authContext.Provider

@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import Navbar from '../navbar/Navbar'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import PrivateRoute from '../routing/privateRoute'
 import BudgetItems from '../budgetItems/BudgetItems'
 import BudgetState from '../../context/budget/budgetState'
 import AuthState from '../../context/auth/authState'
@@ -17,7 +18,7 @@ const App = () => {
 			     	<Navbar/>
 			  		<div className="container">
 			  			<Switch>
-			  				<Route exact path='/' component={Home}/>
+			  				<PrivateRoute exact path='/' component={Home}/>
 			  				<Route exact path='/register' component={Register}/>
 			  				<Route exact path='/login' component={Login}/>
 			  			</Switch>
