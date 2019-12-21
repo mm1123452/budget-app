@@ -1,4 +1,4 @@
-import React,{createContext, Component} from 'react'
+/*import React,{createContext, Component} from 'react'
 
 const AuthContext = createContext()
 
@@ -17,4 +17,4 @@ class Provider extends Component {
 	}
 }
 
-export default Provider
+export default Provider*/

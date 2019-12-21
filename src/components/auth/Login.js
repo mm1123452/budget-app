@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import ErrorComponent from '../error/Error.js'
+import AuthContext from '../../context/auth/authContext'
 
-const Login = () => {
+
+const Login = (props) => {
+	const authContext = useContext(AuthContext)
 	const [user,setUser]  = useState({
 		email: '',
 		password:'',
@@ -9,6 +12,14 @@ const Login = () => {
 	const [error, setError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
 	const { email, password} = user
+
+	const {login, isAuthenticated} = authContext
+
+	useEffect(() => {
+		if(isAuthenticated) {
+			props.history.push('/')
+		}
+	},[isAuthenticated, props.history])
 
 	const onChange = e => setUser({...user, [e.target.name]: e.target.value })
 
@@ -19,6 +30,7 @@ const Login = () => {
 			setError(true)
 		}  else {
 			setError(false)
+			login({email,password})
 			console.log('Login user')
 		}
 	}

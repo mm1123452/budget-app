@@ -1,10 +1,16 @@
-import React, {useContext} from 'react'
+import React, {useContext,useEffect} from 'react'
 import BudgetContext from '../../context/budget/budgetContext'
+import AuthContext from '../../context/auth/authContext'
 
 const Home = () => {
 	const budgetContext = useContext(BudgetContext)
+	const authContext = useContext(AuthContext)
 
 	const {budget} = budgetContext;
+
+	useEffect(() => {
+		authContext.loadUser(localStorage.getItem('token'))
+	}, [])
 
 	const budgetList = budget.length > 0 ? budget.map(budget => (
 			<li key={budget.id} className="list-group-item">{budget.name}</li>

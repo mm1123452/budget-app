@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext,useEffect} from 'react'
 import ErrorComponent from '../error/Error.js'
-import {register} from '../../api/api'
+import AuthContext from '../../context/auth/authContext'
 
-const Register = () => {
+const Register = (props) => {
+	const authContext = useContext(AuthContext)
 	const [user,setUser]  = useState({
 		name: '',
 		email: '',
@@ -11,8 +12,15 @@ const Register = () => {
 	})
 	const [error, setError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
-
 	const {name, email, password, password2} = user
+
+	const {register, isAuthenticated} = authContext
+
+	useEffect(() => {
+		if(isAuthenticated) {
+			props.history.push('/')
+		}
+	},[isAuthenticated, props.history])
 
 	const onChange = e => setUser({...user, [e.target.name]: e.target.value })
 
@@ -26,8 +34,7 @@ const Register = () => {
 			setError(true)
 		} else {
 			setError(false)
-			const data = {name,email,password}
-			register(data)
+			register({name,email,password})
 			console.log('Register submit')
 		}		
 	}
