@@ -4,49 +4,42 @@ import BudgetContext from '../../context/budget/budgetContext'
 
 const BudgetForm = (props) => {
 	const budgetContext = useContext(BudgetContext)
-	const [name,setName]  = useState({
-		name: '',
-	})
+
+	const [name,setName]  = useState('')
 	
-	const {login, isAuthenticated} = authContext
+	const {createBudget} = budgetContext
 
-	useEffect(() => {
-		if(isAuthenticated) {
-			props.history.push('/')
-		}
-	},[isAuthenticated, props.history])
+    const onChange = e => {
+   	  setName(e.target.value)
+   	  console.log(e.target.value)
+    }
 
-	const onChange = e => setUser({...user, [e.target.name]: e.target.value })
+    const onSubmit = e => {
+   		e.preventDefault()
+   		createBudget({name})
+   	 	setName('')
+    }
+  
 
-	const onSubmit = e => {
-		e.preventDefault();
-		if (email === '' || password === '' ) {
-			setErrorMessage('Please fill out all fields')
-			setError(true)
-		}  else {
-			setError(false)
-			login({email,password})
-			console.log('Login user')
-		}
-	}
 	return (
-		<div className="container">
-			<div className="col-sm-8 offset-sm-2">
-				<h1 className="mt-4">Login</h1>
-				<form onSubmit={onSubmit}>
+		<form onSubmit={onSubmit} className="form-inline my-4">
+			 <div className="form-row">
+    			<div className="col">
 					<div className="form-group">
-						<label htmlFor="name">Name</label>
 						<input 
-							className="form-control"
-							type="name" 
-							name="name" 
-							value={name}
-							onChange={onChange}/>
+						className="form-control"
+						type="text" 
+						placeholder="name" 
+						name="name" 
+						value={name} 
+						onChange={onChange}/>
 					</div>
-					<input type="submit" value="Login" className="btn btn-primary btn-block"/>
-				</form>
+				</div>
+				<div class="col">
+					<div><input type="submit" value="Create New" className="btn btn-primary" /></div>
+				</div>
 			</div>
-		</div>
+		</form>
 	)
 }
 export default BudgetForm;
