@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useEffect} from 'react';
+import React, {Fragment, useContext} from 'react';
 import './Navbar.css'
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/auth/authContext'
@@ -8,14 +8,9 @@ const Navbar  = () => {
 
 	const {logout, user, isAuthenticated, loadUser} = authContext
 
-	useEffect(() => {
-		loadUser(localStorage.getItem('token'))	
-	}, [])
-
 	const handleLogout =() => {
 		logout()
 	}
-
 
 
 	const authLinks = (

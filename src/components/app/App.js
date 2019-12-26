@@ -21,11 +21,12 @@ const App = () => {
 			  				<PrivateRoute exact path='/' component={Home}/>
 			  				<Route exact path='/register' component={Register}/>
 			  				<Route exact path='/login' component={Login}/>
+			  				<PrivateRoute exact path='/budget/:id' component={ BudgetItems}/>
 			  			</Switch>
 			  		</div>
 			    </Fragment>
 		    </Router>
-		</BudgetState>
+		</BudgetState>		
 	</AuthState>
   );
 }

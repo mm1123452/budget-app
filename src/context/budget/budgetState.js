@@ -14,7 +14,6 @@ const BudgetState = props => {
 
 	const {token} = authContext
 
-
 	//TODO refactor
 	const createRequest  = (url,method, data, token) => {
 		console.log(token)
@@ -37,9 +36,9 @@ const BudgetState = props => {
 	}
 
 	const createBudget = async (budgetData) => {
-		console.log(token)
+		//console.log(token)
 		try {
-			const response = await createRequest('api/budget','POST',budgetData, token)
+			const response = await createRequest('api/budget','POST',budgetData)
 			const data = await response.json()
 
 			if (!response.ok) {
@@ -55,16 +54,14 @@ const BudgetState = props => {
 		}		
 	}
 
-
 	const getAllBudget = async () => {
 	    try {
-	    	const response = await createRequest('/api/budget', 'GET', null, token);
+	    	const response = await createRequest('/api/budget', 'GET', null,token);
 		 	const data = await response.json()
 
 			if (!response.ok) {
 				    throw new Error(data.msg);
 			}
-
 			console.log(response)
 			console.log(data)
 
@@ -74,13 +71,32 @@ const BudgetState = props => {
 	    }
 	};
 
+	const addBudgetItem = async (budgetItem) => {
+		const {id} = budgetItem
+		console.log(budgetItem)
+	    try {
+	    	const response = await createRequest(`/api/budget/${id}`, 'POST', budgetItem.budgetItem,token);
+		 	const data = await response.json()
+
+			if (!response.ok) {
+				    throw new Error(data.msg);
+			}
+			console.log(response)
+			console.log(data)
+
+	      dispatch({type: ADD_BUDGET_ITEM, payload: data});
+	    } catch (err) {
+	      	console.log(err)
+	    }
+	};
 
 	return (
 		<budgetContext.Provider
 			value={{
 				budget: state.budget,
 				createBudget,
-				getAllBudget
+				getAllBudget,
+				addBudgetItem
 			}}>
 			{props.children}
 		</budgetContext.Provider>

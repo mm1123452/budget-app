@@ -26,7 +26,6 @@ router.post('/', [auth,
 	.not()
 	.isEmpty(),
 ], async (req,res) => {
-
 		const errors = validationResult(req)
 		if (!errors.isEmpty()) {
 

@@ -35,7 +35,7 @@ const BudgetForm = (props) => {
 						onChange={onChange}/>
 					</div>
 				</div>
-				<div class="col">
+				<div className="col">
 					<div><input type="submit" value="Create New" className="btn btn-primary" /></div>
 				</div>
 			</div>
