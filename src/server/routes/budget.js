@@ -37,8 +37,6 @@ router.post('/', [auth,
 		try {
 			const newBudget = new Budget({
 				name,
-				//income:[],
-				//expense:[]
 				user: req.user.id
 			})
 

@@ -2,7 +2,7 @@ import React, {useReducer, useContext} from 'react'
 import budgetContext from './budgetContext'
 import budgetReducer from './budgetReducer'
 import AuthContext from '../auth/authContext'
-import {CREATE_BUDGET,ADD_BUDGET_ITEM,DELETE_BUDGET_ITEM,UPDATE_BUDGET_ITEM,GET_BUDGET } from '../types'
+import {CREATE_BUDGET,ADD_BUDGET_ITEM,DELETE_BUDGET_ITEM,UPDATE_BUDGET_ITEM,GET_ALL_BUDGET, GET_ONE_BUDGET} from '../types'
 
 const BudgetState = props => {
 	const initialState = {
@@ -65,11 +65,27 @@ const BudgetState = props => {
 			console.log(response)
 			console.log(data)
 
-	      dispatch({type: GET_BUDGET, payload: data});
+	      dispatch({type: GET_ALL_BUDGET, payload: data});
 	    } catch (err) {
 	      	console.log(err)
 	    }
 	};
+
+	const getOneBudget = async (id) => {
+		try {
+			const response = await createRequest(`/api/budget/${id}`, 'GET', null,token);
+			const data = await response.json()
+
+			if (!response.ok) {
+				    throw new Error(data.msg);
+			}
+			console.log(response)
+			console.log(data)
+		  	dispatch({type: GET_ONE_BUDGET, payload: data});
+	    } catch (err) {
+	      	console.log(err)
+	    }
+	}
 
 	const addBudgetItem = async (budgetItem) => {
 		const {id} = budgetItem
@@ -96,7 +112,8 @@ const BudgetState = props => {
 				budget: state.budget,
 				createBudget,
 				getAllBudget,
-				addBudgetItem
+				addBudgetItem,
+				getOneBudget 
 			}}>
 			{props.children}
 		</budgetContext.Provider>
