@@ -171,6 +171,7 @@ router.put('/:id', [auth,
 // @access  Private
 router.delete('/:id',auth, async (req,res) => {
 		try {
+
 			let budget = await Budget.findById(req.params.id)
 			
 			if(!budget) return res.status(404).send({msg:'Not found'})
@@ -181,8 +182,9 @@ router.delete('/:id',auth, async (req,res) => {
 
 			budget = await Budget.updateOne(
 				{_id: req.params.id,[`${type}._id`]: _id},
-				{$pull: {[type]:{_id}}
-			})
+				{$pull: {[type]:{_id}}}
+
+			)
 
 			res.json(budget)
 		} catch (err) {

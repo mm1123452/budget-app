@@ -1,6 +1,4 @@
-import React, {Component,useState, useContext} from 'react'
-import uuid from 'uuid/v4'
-import BudgetContext from '../../context/budget/budgetContext'
+import React, {useState} from 'react'
 import { useParams} from "react-router-dom";
 
 const BudgetItemsForm = (props) => {
@@ -20,11 +18,8 @@ const BudgetItemsForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(budgetItem)
-
 		addBudgetItem({budgetItem, id})
-
-		console.log('form submited')
+		setBudgetItem({ description:'',amount:0,type:''})
 	}
 
 	return (

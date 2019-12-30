@@ -1,6 +1,5 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import TableRow from '../tableRow/TableRow'
-import BudgetContext from '../../context/budget/budgetContext'
 
 const Table = (props) => {
 	const {data,title} = props
@@ -18,7 +17,7 @@ const Table = (props) => {
 			<div className="table-header">
 				<h5>
 					{title}
-					<small>total: ${sum}</small>
+					<small>Total: ${sum}</small>
 				</h5>
 			</div>
 			<div className="table-body">

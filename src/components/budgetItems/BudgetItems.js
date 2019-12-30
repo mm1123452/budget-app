@@ -12,7 +12,7 @@ const BudgetItems = (props) => {
 	const budgetContext = useContext(BudgetContext)
 
 	const {getOneBudget,budget,addBudgetItem} = budgetContext
-	const {income, expense} = budget
+	const {income, expense,name} = budget
 	const { id } = useParams();
 
 
@@ -30,8 +30,8 @@ const BudgetItems = (props) => {
 	 		<div className="container">
 	     		<BudgetItemsForm addBudgetItem={addBudgetItem}/>
 	     	</div>
-	     	{income && income.length > 0 && expense && expense.length > 0 ? 
-	     		<Chart expenses={expense} income={income}/> :
+	     	{expense && expense.length > 0 ? 
+	     		<Chart name={name} expenses={expense} /> :
 	     		null
 	     	}
 	     	<div className="container">

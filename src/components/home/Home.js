@@ -15,7 +15,6 @@ const Home = () => {
 	useEffect(() => {
 		 loadUser(localStorage.getItem('token'))
 		if (isAuthenticated) {
-		    //loadUser(localStorage.getItem('token'))
 		    getAllBudget()
 		}
 		
