@@ -7,7 +7,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.3",
     "config": "^3.2.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-validator": "^6.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.12",
